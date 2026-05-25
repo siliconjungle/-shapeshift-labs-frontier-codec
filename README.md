@@ -195,16 +195,16 @@ Run the package-local benchmark:
 npm run bench
 ```
 
-Latest local package-gate run on Node v26.1.0, darwin arm64, 3 rounds:
+Latest local package benchmark on Node v26.1.0, darwin arm64, 3 rounds:
 
 | Fixture | Median | p95 |
 | --- | ---: | ---: |
-| Patch encode, 1k keyed-row edit, 30 B | 0.64 us | 0.66 us |
-| Patch decode, 1k keyed-row edit, 30 B | 0.32 us | 0.32 us |
-| Frame inspect + payload slice, 70 B | 0.42 us | 0.42 us |
-| Frame decode, 1k keyed-row edit, 70 B | 0.58 us | 0.59 us |
-| History decode+apply, 128 patches, 2.8 KiB | 57.20 us | 75.51 us |
-| Canonical JSON stringify, 523 B | 6.45 us | 6.48 us |
+| Patch encode, 1k keyed-row edit, 30 B | 0.61 us | 0.66 us |
+| Patch decode, 1k keyed-row edit, 30 B | 0.36 us | 0.43 us |
+| Frame inspect + payload slice, 70 B | 0.40 us | 0.42 us |
+| Frame decode, 1k keyed-row edit, 70 B | 0.59 us | 0.62 us |
+| History decode+apply, 128 patches, 2.8 KiB | 56.11 us | 56.47 us |
+| Canonical JSON stringify, 523 B | 6.34 us | 6.49 us |
 
 These are Frontier-only package measurements, not competitor comparisons.
 
