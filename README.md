@@ -11,12 +11,14 @@ This package sits above [`@shapeshift-labs/frontier`](https://www.npmjs.com/pack
 ## Related Packages
 
 - [`@shapeshift-labs/frontier`](https://www.npmjs.com/package/@shapeshift-labs/frontier): core JSON diff/apply primitives used by this package.
+- [`@shapeshift-labs/frontier-engine`](https://www.npmjs.com/package/@shapeshift-labs/frontier-engine): planned diff engine and history helpers that use this package for encoded histories.
 - [`@shapeshift-labs/frontier-query`](https://www.npmjs.com/package/@shapeshift-labs/frontier-query): shared query-key, selector path, condition, identity, and table-schema primitives.
 - [`@shapeshift-labs/frontier-mutation`](https://www.npmjs.com/package/@shapeshift-labs/frontier-mutation): explicit mutation and selector plans compiled to Frontier patches or CRDT operations.
 
 Package source repositories:
 
 - [`siliconjungle/-shapeshift-labs-frontier`](https://github.com/siliconjungle/-shapeshift-labs-frontier)
+- [`siliconjungle/-shapeshift-labs-frontier-engine`](https://github.com/siliconjungle/-shapeshift-labs-frontier-engine)
 - [`siliconjungle/-shapeshift-labs-frontier-query`](https://github.com/siliconjungle/-shapeshift-labs-frontier-query)
 - [`siliconjungle/-shapeshift-labs-frontier-mutation`](https://github.com/siliconjungle/-shapeshift-labs-frontier-mutation)
 
@@ -197,12 +199,12 @@ Latest local package-gate run on Node v26.1.0, darwin arm64, 3 rounds:
 
 | Fixture | Median | p95 |
 | --- | ---: | ---: |
-| Patch encode, 1k keyed-row edit, 30 B | 0.66 us | 0.76 us |
-| Patch decode, 1k keyed-row edit, 30 B | 0.34 us | 0.35 us |
-| Frame inspect + payload slice, 70 B | 0.42 us | 0.43 us |
-| Frame decode, 1k keyed-row edit, 70 B | 0.63 us | 0.64 us |
-| History decode+apply, 128 patches, 2.8 KiB | 58.58 us | 58.80 us |
-| Canonical JSON stringify, 523 B | 6.98 us | 7.11 us |
+| Patch encode, 1k keyed-row edit, 30 B | 0.64 us | 0.66 us |
+| Patch decode, 1k keyed-row edit, 30 B | 0.32 us | 0.32 us |
+| Frame inspect + payload slice, 70 B | 0.42 us | 0.42 us |
+| Frame decode, 1k keyed-row edit, 70 B | 0.58 us | 0.59 us |
+| History decode+apply, 128 patches, 2.8 KiB | 57.20 us | 75.51 us |
+| Canonical JSON stringify, 523 B | 6.45 us | 6.48 us |
 
 These are Frontier-only package measurements, not competitor comparisons.
 
