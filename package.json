@@ -1,6 +1,6 @@
 {
   "name": "@shapeshift-labs/frontier-codec",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Patch serialization, binary frames, and history codecs for Frontier patches.",
   "type": "module",
   "license": "MIT",
