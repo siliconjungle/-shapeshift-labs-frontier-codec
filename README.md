@@ -5,7 +5,7 @@ Patch serialization, binary frames, and patch-history codecs for Frontier.
 This package sits above [`@shapeshift-labs/frontier`](https://www.npmjs.com/package/@shapeshift-labs/frontier), the small JSON diff/apply core package. It keeps transport, persistence, and canonicalization helpers in a separate package so core imports stay small and predictable.
 
 - npm: [`@shapeshift-labs/frontier-codec`](https://www.npmjs.com/package/@shapeshift-labs/frontier-codec)
-- source: [`siliconjungle/-shapeshift-labs-frontier-codex`](https://github.com/siliconjungle/-shapeshift-labs-frontier-codex)
+- source: [`siliconjungle/-shapeshift-labs-frontier-codec`](https://github.com/siliconjungle/-shapeshift-labs-frontier-codec)
 - license: MIT
 
 ## Related Packages

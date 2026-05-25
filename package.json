@@ -7,11 +7,11 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/siliconjungle/-shapeshift-labs-frontier-codex.git"
+    "url": "git+ssh://git@github.com/siliconjungle/-shapeshift-labs-frontier-codec.git"
   },
-  "homepage": "https://github.com/siliconjungle/-shapeshift-labs-frontier-codex#readme",
+  "homepage": "https://github.com/siliconjungle/-shapeshift-labs-frontier-codec#readme",
   "bugs": {
-    "url": "https://github.com/siliconjungle/-shapeshift-labs-frontier-codex/issues"
+    "url": "https://github.com/siliconjungle/-shapeshift-labs-frontier-codec/issues"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
