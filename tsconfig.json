@@ -6,16 +6,17 @@
     "rootDir": "src",
     "outDir": "dist",
     "declaration": true,
-    "declarationMap": false,
-    "sourceMap": false,
+    "declarationMap": true,
+    "sourceMap": true,
     "stripInternal": true,
     "strict": false,
     "noImplicitAny": false,
-    "allowJs": false,
-    "checkJs": false,
     "skipLibCheck": true,
     "composite": true,
-    "tsBuildInfoFile": "node_modules/.cache/tsconfig.tsbuildinfo"
+    "tsBuildInfoFile": "node_modules/.cache/tsconfig.tsbuildinfo",
+    "ignoreDeprecations": "6.0"
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts"
+  ]
 }

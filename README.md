@@ -11,7 +11,14 @@ This package sits above [`@shapeshift-labs/frontier`](https://www.npmjs.com/pack
 ## Related Packages
 
 - [`@shapeshift-labs/frontier`](https://www.npmjs.com/package/@shapeshift-labs/frontier): core JSON diff/apply primitives used by this package.
+- [`@shapeshift-labs/frontier-query`](https://www.npmjs.com/package/@shapeshift-labs/frontier-query): shared query-key, selector path, condition, identity, and table-schema primitives.
 - [`@shapeshift-labs/frontier-mutation`](https://www.npmjs.com/package/@shapeshift-labs/frontier-mutation): explicit mutation and selector plans compiled to Frontier patches or CRDT operations.
+
+Package source repositories:
+
+- [`siliconjungle/-shapeshift-labs-frontier`](https://github.com/siliconjungle/-shapeshift-labs-frontier)
+- [`siliconjungle/-shapeshift-labs-frontier-query`](https://github.com/siliconjungle/-shapeshift-labs-frontier-query)
+- [`siliconjungle/-shapeshift-labs-frontier-mutation`](https://github.com/siliconjungle/-shapeshift-labs-frontier-mutation)
 
 ## Install
 
@@ -33,41 +40,6 @@ const bytes = encodePatch(patch);
 const decoded = decodePatch(bytes);
 
 console.log(applyPatchImmutable(before, decoded));
-```
-
-## What It Provides
-
-Frontier Codec is for moving Frontier patches across process, network, and storage boundaries:
-
-- `serializePatch()` / `deserializePatch()` for compact JSON-safe patch payloads.
-- `encodePatch()` / `decodePatch()` for binary patch payloads.
-- `encodePatchBase64url()` / `decodePatchBase64url()` for URL/header-safe transport strings.
-- `encodePatchHistory()` / `decodePatchHistory()` for compact patch-history persistence.
-- `applyPatchHistory()` / `applyEncodedPatchHistory()` for replaying stored histories.
-- `createPatchHistoryBuilder()` for incremental history assembly.
-- `encodePatchFrame()` / `decodePatchFrame()` for versioned typed wire frames.
-- `inspectCodecFrame()` / `readCodecFramePayload()` for metadata-first frame handling.
-- `stringifyCanonicalJson()` / `encodeCanonicalJson()` for deterministic signing, hashing, and cache keys.
-
-## Performance
-
-Frontier Codec was measured from this package with `npm run bench` on Node v26.1.0, darwin arm64. Timings are median microseconds per operation across 9 warmed rounds; p95 is shown to make noise visible.
-
-| Fixture | Bytes | Median | p95 |
-| --- | ---: | ---: | ---: |
-| Patch encode, 1k keyed-row edit | 30 B | 0.59 us | 0.71 us |
-| Patch decode, 1k keyed-row edit | 30 B | 0.24 us | 0.57 us |
-| Frame inspect + payload slice | 70 B | 0.41 us | 0.48 us |
-| Frame decode, 1k keyed-row edit | 70 B | 0.62 us | 0.73 us |
-| History decode + apply, 128 patches | 2.8 KiB | 57.10 us | 74.87 us |
-| Canonical JSON stringify | 523 B | 6.62 us | 6.82 us |
-
-These are Frontier-only package measurements, not a competitor comparison. Hardware, Node version, and data shape will affect absolute timings.
-
-Reproduce the package-local benchmark with:
-
-```sh
-npm run bench
 ```
 
 ## API
@@ -96,6 +68,20 @@ import {
   encodeCanonicalJson
 } from '@shapeshift-labs/frontier-codec';
 ```
+
+## What It Provides
+
+Frontier Codec is for moving Frontier patches across process, network, and storage boundaries:
+
+- `serializePatch()` / `deserializePatch()` for compact JSON-safe patch payloads.
+- `encodePatch()` / `decodePatch()` for binary patch payloads.
+- `encodePatchBase64url()` / `decodePatchBase64url()` for URL/header-safe transport strings.
+- `encodePatchHistory()` / `decodePatchHistory()` for compact patch-history persistence.
+- `applyPatchHistory()` / `applyEncodedPatchHistory()` for replaying stored histories.
+- `createPatchHistoryBuilder()` for incremental history assembly.
+- `encodePatchFrame()` / `decodePatchFrame()` for versioned typed wire frames.
+- `inspectCodecFrame()` / `readCodecFramePayload()` for metadata-first frame handling.
+- `stringifyCanonicalJson()` / `encodeCanonicalJson()` for deterministic signing, hashing, and cache keys.
 
 ### Binary Patch Transport
 
@@ -171,12 +157,6 @@ CRDT update codecs live in the CRDT package layer. State routing, sync providers
 
 The package ships ESM JavaScript plus `.d.ts` declarations for every public subpath. The package-local TypeScript source lives in `src/` and compiles directly to `dist/`; it is not copied from the monorepo root build output.
 
-```ts
-import type { PatchHistoryCodecOptions } from '@shapeshift-labs/frontier-codec/types';
-```
-
-The runtime package is ESM-only and supports Node 18 or newer.
-
 ## Validation
 
 The package test suite covers:
@@ -193,11 +173,38 @@ Run it with:
 npm test
 ```
 
+Run the package-local fuzzer directly:
+
+```sh
+npm run fuzz
+```
+
 For a publish dry run:
 
 ```sh
-npm pack --dry-run
+npm run pack:dry
 ```
+
+## Benchmarks
+
+Run the package-local benchmark:
+
+```sh
+npm run bench
+```
+
+Latest local package-gate run on Node v26.1.0, darwin arm64, 3 rounds:
+
+| Fixture | Median | p95 |
+| --- | ---: | ---: |
+| Patch encode, 1k keyed-row edit, 30 B | 0.66 us | 0.76 us |
+| Patch decode, 1k keyed-row edit, 30 B | 0.34 us | 0.35 us |
+| Frame inspect + payload slice, 70 B | 0.42 us | 0.43 us |
+| Frame decode, 1k keyed-row edit, 70 B | 0.63 us | 0.64 us |
+| History decode+apply, 128 patches, 2.8 KiB | 58.58 us | 58.80 us |
+| Canonical JSON stringify, 523 B | 6.98 us | 7.11 us |
+
+These are Frontier-only package measurements, not competitor comparisons.
 
 ## License
 
