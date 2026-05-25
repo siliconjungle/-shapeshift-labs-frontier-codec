@@ -51,18 +51,24 @@ Frontier Codec is for moving Frontier patches across process, network, and stora
 
 ## Performance
 
-Frontier Codec was measured from this package on Node v26.1.0, darwin arm64. Timings are median microseconds per operation across warmed samples; p95 is shown to make noise visible.
+Frontier Codec was measured from this package with `npm run bench` on Node v26.1.0, darwin arm64. Timings are median microseconds per operation across 9 warmed rounds; p95 is shown to make noise visible.
 
 | Fixture | Bytes | Median | p95 |
 | --- | ---: | ---: | ---: |
-| Patch encode, 1k keyed-row edit | 57 B | 0.85 us | 1.54 us |
-| Patch decode, 1k keyed-row edit | 57 B | 0.40 us | 0.93 us |
-| Frame inspect + payload slice | 84 B | 0.33 us | 0.62 us |
-| Frame decode, 1k keyed-row edit | 84 B | 0.72 us | 1.40 us |
-| History decode + apply, 128 patches | 3.6 KiB | 66.46 us | 96.06 us |
-| Canonical JSON stringify | 478 B | 6.17 us | 8.25 us |
+| Patch encode, 1k keyed-row edit | 30 B | 0.59 us | 0.71 us |
+| Patch decode, 1k keyed-row edit | 30 B | 0.24 us | 0.57 us |
+| Frame inspect + payload slice | 70 B | 0.41 us | 0.48 us |
+| Frame decode, 1k keyed-row edit | 70 B | 0.62 us | 0.73 us |
+| History decode + apply, 128 patches | 2.8 KiB | 57.10 us | 74.87 us |
+| Canonical JSON stringify | 523 B | 6.62 us | 6.82 us |
 
 These are Frontier-only package measurements, not a competitor comparison. Hardware, Node version, and data shape will affect absolute timings.
+
+Reproduce the package-local benchmark with:
+
+```sh
+npm run bench
+```
 
 ## API
 
