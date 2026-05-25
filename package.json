@@ -109,5 +109,6 @@
   ],
   "devDependencies": {
     "typescript": "^6.0.3"
-  }
+  },
+  "author": "james addison"
 }
