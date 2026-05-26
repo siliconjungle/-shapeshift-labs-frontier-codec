@@ -95,9 +95,11 @@
     "typecheck": "tsc -p test/tsconfig.json",
     "test": "npm run build && npm run typecheck && node test/smoke.mjs && node test/conformance.mjs && node test/index-list-fuzz.mjs --cases 320 && node test/roundtrip-fuzz.mjs --cases 400",
     "fuzz": "npm run build && node test/index-list-fuzz.mjs --cases 320 && node test/roundtrip-fuzz.mjs --cases 400",
-    "prepack": "npm run test",
+    "readme:packages": "node benchmarks/package-readme-sections.mjs",
+    "readme:packages:check": "node benchmarks/package-readme-sections.mjs --check",
+    "prepack": "npm run readme:packages:check && npm run test",
     "bench": "npm run build && node benchmarks/package-bench.mjs",
-    "pack:dry": "npm pack --dry-run"
+    "pack:dry": "npm run readme:packages:check && npm pack --dry-run"
   },
   "keywords": [
     "frontier",
