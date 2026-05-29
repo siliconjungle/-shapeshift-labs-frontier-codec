@@ -88,7 +88,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@shapeshift-labs/frontier": "0.1.8"
+    "@shapeshift-labs/frontier": "0.1.9"
   },
   "scripts": {
     "build": "node build.mjs",
